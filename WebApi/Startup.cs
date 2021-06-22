@@ -26,11 +26,11 @@ namespace WebApi
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-
 			services.AddControllers();
 			services.AddSwaggerGen(c =>
 			{
-				c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
+				c.IncludeXmlComments($@"{AppDomain.CurrentDomain.BaseDirectory}\OnionArchitecture.xml");
+				c.SwaggerDoc("v1", new OpenApiInfo { Title = "OnionArchitecture", Version = "v1" });
 			});
 		}
 
@@ -40,9 +40,10 @@ namespace WebApi
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
-				app.UseSwagger();
-				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
 			}
+
+			app.UseSwagger();
+			app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OnionArchitecture"));
 
 			app.UseHttpsRedirection();
 
