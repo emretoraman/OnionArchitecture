@@ -1,17 +1,12 @@
 using Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Persistence;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebApi
 {
@@ -30,11 +25,11 @@ namespace WebApi
 			services.AddControllers();
 			services.AddSwaggerGen(c =>
 			{
-				c.IncludeXmlComments($@"{AppDomain.CurrentDomain.BaseDirectory}\OnionArchitecture.xml");
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "OnionArchitecture", Version = "v1" });
 			});
 
 			services.AddApplication();
+			services.AddPersistence(Configuration);
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
