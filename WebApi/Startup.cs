@@ -1,3 +1,4 @@
+using Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,8 @@ namespace WebApi
 				c.IncludeXmlComments($@"{AppDomain.CurrentDomain.BaseDirectory}\OnionArchitecture.xml");
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "OnionArchitecture", Version = "v1" });
 			});
+
+			services.AddApplication();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
